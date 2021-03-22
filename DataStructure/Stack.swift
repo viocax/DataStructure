@@ -9,9 +9,6 @@ import Foundation
 
 public struct Stack<Element> {
     private(set) var sequence: [Element]
-    init(_ sequence: [Element] = []) {
-        self.sequence = sequence.reversed()
-    }
 }
 
 extension Stack {
@@ -28,3 +25,14 @@ extension Stack {
         return sequence.removeFirst()
     }
 }
+
+extension Stack: ExpressibleByArrayLiteral {
+
+    public typealias ArrayLiteralElement = Element
+
+    public init(arrayLiteral elements: Element...) {
+        self.sequence = elements.reversed()
+    }
+    
+}
+

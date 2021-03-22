@@ -10,8 +10,7 @@ import XCTest
 
 class DataStructureUnitTests: XCTestCase {
     func test_stack_init_order() {
-        let stub_Array = [1, 2, 4, 5, 6, 7]
-        let stack = Stack<Int>(stub_Array)
+        let stack: Stack<Int> = [1, 2, 4, 5, 6, 7]
         XCTAssertEqual(stack.sequence, [7, 6, 5, 4, 2, 1])
     }
     func test_stack_push_order() {
@@ -23,8 +22,7 @@ class DataStructureUnitTests: XCTestCase {
         XCTAssertEqual(stack.sequence, [7, 6, 5, 4, 2, 1])
     }
     func test_stack_pop_order() {
-        let stub_Array = [1, 2, 4, 5, 6, 7]
-        var stack = Stack<Int>(stub_Array)
+        var stack: Stack<Int> = [1, 2, 4, 5, 6, 7]
         XCTAssertEqual(stack.pop(), 7)
         XCTAssertEqual(stack.pop(), 6)
         XCTAssertEqual(stack.pop(), 5)
