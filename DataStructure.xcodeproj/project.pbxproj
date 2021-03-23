@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0D6642392604E9FE00ACDA33 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6642382604E9FE00ACDA33 /* main.swift */; };
-		0D6642472604EA2700ACDA33 /* DataStructureUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6642462604EA2700ACDA33 /* DataStructureUnitTests.swift */; };
+		0D6642472604EA2700ACDA33 /* StackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6642462604EA2700ACDA33 /* StackTests.swift */; };
+		0D9AD6A226082DFA004D647C /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9AD6A126082DFA004D647C /* LinkedList.swift */; };
+		0D9AD6A326082DFA004D647C /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9AD6A126082DFA004D647C /* LinkedList.swift */; };
+		0D9AD6A726082ED1004D647C /* LinkedListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9AD6A626082ED1004D647C /* LinkedListTests.swift */; };
 		0DBC19222604F30200249670 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6642382604E9FE00ACDA33 /* main.swift */; };
 		0DBC19282604F3AC00249670 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC19272604F3AC00249670 /* Stack.swift */; };
 		0DBC19292604F3AC00249670 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC19272604F3AC00249670 /* Stack.swift */; };
@@ -30,8 +33,10 @@
 		0D6642352604E9FE00ACDA33 /* DataStructure */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DataStructure; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D6642382604E9FE00ACDA33 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		0D6642442604EA2700ACDA33 /* DataStructureUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataStructureUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0D6642462604EA2700ACDA33 /* DataStructureUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStructureUnitTests.swift; sourceTree = "<group>"; };
+		0D6642462604EA2700ACDA33 /* StackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackTests.swift; sourceTree = "<group>"; };
 		0D6642482604EA2700ACDA33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D9AD6A126082DFA004D647C /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
+		0D9AD6A626082ED1004D647C /* LinkedListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListTests.swift; sourceTree = "<group>"; };
 		0DBC19272604F3AC00249670 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				0D6642382604E9FE00ACDA33 /* main.swift */,
+				0D9AD6A126082DFA004D647C /* LinkedList.swift */,
 				0DBC19272604F3AC00249670 /* Stack.swift */,
 			);
 			path = DataStructure;
@@ -83,7 +89,8 @@
 		0D6642452604EA2700ACDA33 /* DataStructureUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				0D6642462604EA2700ACDA33 /* DataStructureUnitTests.swift */,
+				0D6642462604EA2700ACDA33 /* StackTests.swift */,
+				0D9AD6A626082ED1004D647C /* LinkedListTests.swift */,
 				0D6642482604EA2700ACDA33 /* Info.plist */,
 			);
 			path = DataStructureUnitTests;
@@ -177,6 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D9AD6A226082DFA004D647C /* LinkedList.swift in Sources */,
 				0DBC19282604F3AC00249670 /* Stack.swift in Sources */,
 				0D6642392604E9FE00ACDA33 /* main.swift in Sources */,
 			);
@@ -187,8 +195,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DBC19222604F30200249670 /* main.swift in Sources */,
+				0D9AD6A726082ED1004D647C /* LinkedListTests.swift in Sources */,
 				0DBC19292604F3AC00249670 /* Stack.swift in Sources */,
-				0D6642472604EA2700ACDA33 /* DataStructureUnitTests.swift in Sources */,
+				0D9AD6A326082DFA004D647C /* LinkedList.swift in Sources */,
+				0D6642472604EA2700ACDA33 /* StackTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
