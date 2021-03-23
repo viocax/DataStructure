@@ -1,6 +1,6 @@
 //
-//  DataStructureUnitTests.swift
-//  DataStructureUnitTests
+//  StackTests.swift
+//  StackTests
 //
 //  Created by Jie liang Huang on 2021/3/19.
 //
@@ -8,7 +8,7 @@
 import XCTest
 @testable import DataStructure
 
-class DataStructureUnitTests: XCTestCase {
+class StackTests: XCTestCase {
     func test_stack_init_order() {
         let stack: Stack<Int> = [1, 2, 4, 5, 6, 7]
         XCTAssertEqual(stack.sequence, [7, 6, 5, 4, 2, 1])
