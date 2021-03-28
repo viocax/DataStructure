@@ -31,7 +31,15 @@ extension Stack: ExpressibleByArrayLiteral {
     public typealias ArrayLiteralElement = Element
 
     public init(arrayLiteral elements: Element...) {
-        self.sequence = elements.reversed()
+        guard !elements.isEmpty else {
+            self.sequence = []
+            return
+        }
+        var stack = Stack<Element>()
+        for element in elements {
+            stack.push(element)
+        }
+        self.sequence = stack.sequence
     }
     
 }

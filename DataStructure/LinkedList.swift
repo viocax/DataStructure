@@ -80,6 +80,11 @@ extension LinkedList {
 
     /// pop: remove node in front of list
     public mutating func pop() {
-        
+        if let secondNode = head?.next {
+            head = secondNode
+            return
+        }
+        head = nil
+        tail = nil
     }
 }

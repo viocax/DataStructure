@@ -29,11 +29,29 @@ class LinkedListTests: XCTestCase {
         list.push(3)
         list.push(4)
         XCTAssertEqual(list.description, "4.3.2.1")
-        XCTAssertEqual(list.tail?.description, "1")
+        XCTAssertEqual(list.head?.value, 4)
+        XCTAssertEqual(list.tail?.value, 1)
         
         list.append(5)
         list.append(6)
         XCTAssertEqual(list.description, "4.3.2.1.5.6")
+        XCTAssertEqual(list.head?.value, 4)
+        XCTAssertEqual(list.tail?.value, 6)
+
+        list.pop()
+        XCTAssertEqual(list.description, "3.2.1.5.6")
+        XCTAssertEqual(list.head?.value, 3)
+        XCTAssertEqual(list.tail?.value, 6)
+
+        list.pop()
+        list.pop()
+        XCTAssertEqual(list.description, "1.5.6")
+        list.pop()
+        list.pop()
+        list.pop()
+        XCTAssertEqual(list.description, "")
+        XCTAssertEqual(list.head?.value, nil)
+        XCTAssertEqual(list.tail?.value, nil)
     }
 }
 
