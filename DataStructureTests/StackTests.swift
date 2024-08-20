@@ -1,5 +1,5 @@
 //
-//  DataStructureTests.swift
+//  StackTests.swift
 //  DataStructureTests
 //
 //  Created by drake on 2024/8/19.
@@ -8,7 +8,7 @@
 import Testing
 @testable import DataStructure
 
-struct DataStructureTests {
+struct StackTests {
 
     @Test func stack_int() async throws {
         var stack = Stack<Int>()
