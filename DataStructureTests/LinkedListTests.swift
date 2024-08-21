@@ -151,4 +151,22 @@ struct LinkedListTests {
         #expect(removeLast3?.value == 1)
         #expect(linkedList.isEmpty)
     }
+
+    @Test func linkedList_copyOnWrite() {
+        var list1 = LinkedList<Int>()
+        list1.append(1)
+        list1.append(2)
+        list1.append(3)
+        var list2 = list1
+        
+        #expect(list1.count == 3)
+        #expect(list2.count == 3)
+
+        list2.append(4)
+        
+        #expect(list1.count == 3)
+        #expect(list1.last?.value == 3)
+        #expect(list2.count == 4)
+        #expect(list2.last?.value == 4)
+    }
 }

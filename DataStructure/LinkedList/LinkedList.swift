@@ -53,6 +53,7 @@ extension LinkedList {
     }
     // push to front, O(1)
     public mutating func push(_ element: Value) {
+        copyNodes()
         head = .init(value: element, next: head)
         if tail == nil {
             tail = head
@@ -64,6 +65,7 @@ extension LinkedList {
             push(element)
             return
         }
+        copyNodes()
         let newNode = Node(value: element)
         tail?.next = newNode // replace last head next poiter
         tail = newNode
@@ -79,6 +81,7 @@ extension LinkedList {
             append(element)
             return
         }
+        copyNodes()
         let previousIndex = index - 1
         let previousNode = node(at: previousIndex)
         let nextNode = previousNode?.next
@@ -101,6 +104,7 @@ extension LinkedList {
 
     @discardableResult
     public mutating func pop() -> Node<Value>? {
+        copyNodes()
         guard let first = head else {
             return nil
         }
@@ -115,6 +119,7 @@ extension LinkedList {
         guard index > .zero else {
             return pop()
         }
+        copyNodes()
         let previousNode = node(at: index - 1)
         let targetNode = previousNode?.next
         previousNode?.next = targetNode?.next
@@ -128,6 +133,7 @@ extension LinkedList {
         guard head?.next != nil else {
             return pop()
         }
+        copyNodes()
         var previous = head
         var current = head
         while let next = current?.next {
@@ -137,6 +143,27 @@ extension LinkedList {
         previous?.next = nil
         tail = previous
         return current
+    }
+
+    private mutating func copyNodes() {
+        guard !isKnownUniquelyReferenced(&head) else {
+            return
+        }
+        guard var oldNode = head else {
+            return
+        }
+        head = Node(value: oldNode.value)
+        
+        // This is iterator for tail
+        var newNode = head
+
+        while let nextOldNode = oldNode.next {
+            newNode?.next = .init(value: nextOldNode.value)
+            newNode = newNode?.next
+            
+            oldNode = nextOldNode
+        }
+        tail = newNode
     }
 }
 
