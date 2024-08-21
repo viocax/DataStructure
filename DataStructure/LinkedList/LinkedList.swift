@@ -9,9 +9,9 @@ import Foundation
 
 public struct LinkedList<Value> {
 
-    public var head: Node<Value>?
+    private var head: Node<Value>?
 
-    public var tail: Node<Value>?
+    private var tail: Node<Value>?
 
     init(head: Node<Value>? = nil, tail: Node<Value>? = nil) {
         self.head = head
@@ -47,6 +47,9 @@ extension LinkedList {
 
     public var last: Node<Value>? {
         return tail
+    }
+    public var first: Node<Value>? {
+        return head
     }
     // push to front, O(1)
     public mutating func push(_ element: Value) {
@@ -94,5 +97,40 @@ extension LinkedList {
             currentIndex += 1
         }
         return currentNode
+    }
+
+    @discardableResult
+    public mutating func pop() -> Node<Value>? {
+        guard let first = head else {
+            return nil
+        }
+        head = first.next
+        if head == nil {
+            tail = nil
+        }
+        return .init(value: first.value)
+    }
+    @discardableResult
+    public mutating func remove(at index: Int) -> Node<Value>? {
+        guard index > .zero else {
+            return pop()
+        }
+        let previousNode = node(at: index - 1)
+        let targetNode = previousNode?.next
+        previousNode?.next = targetNode?.next
+        return targetNode
+    }
+    @discardableResult
+    public mutating func removeLast() -> Node<Value>? {
+        let count = self.count
+        guard count > 1 else {
+            return pop()
+        }
+        let previousIndex = max(count - 1 - 1, 0)
+        let remove = tail
+        let previous = node(at: previousIndex)
+        previous?.next = nil
+        tail = previous
+        return remove
     }
 }
