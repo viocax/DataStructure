@@ -64,3 +64,23 @@ extension Stack: CustomDebugStringConvertible {
         }
     }
 }
+
+extension Stack: Collection {
+
+    public typealias Index = Int
+
+    public typealias Element = Element
+
+    public var startIndex: Int {
+        return elements.startIndex
+    }
+    public var endIndex: Int {
+        return elements.endIndex
+    }
+    public func index(after i: Int) -> Int {
+        return elements.index(after: i)
+    }
+    public subscript(position: Int) -> Element {
+        return elements[position]
+    }
+}

@@ -122,15 +122,62 @@ extension LinkedList {
     }
     @discardableResult
     public mutating func removeLast() -> Node<Value>? {
-        let count = self.count
-        guard count > 1 else {
+        guard !isEmpty else {
+            return nil
+        }
+        guard head?.next != nil else {
             return pop()
         }
-        let previousIndex = max(count - 1 - 1, 0)
-        let remove = tail
-        let previous = node(at: previousIndex)
+        var previous = head
+        var current = head
+        while let next = current?.next {
+            previous = current
+            current = next
+        }
         previous?.next = nil
         tail = previous
-        return remove
+        return current
+    }
+}
+
+extension LinkedList: Collection {
+
+    public struct Index: Comparable {
+        fileprivate var node: Node<Value>?
+
+        public static func == (lhs: LinkedList<Value>.Index, rhs: LinkedList<Value>.Index) -> Bool {
+            switch (lhs.node, rhs.node) {
+            case let (l?, r?):
+                return l.next === r.next
+            case (nil, nil):
+                return true
+            default:
+                return false
+            }
+        }
+        public static func < (lhs: LinkedList<Value>.Index, rhs: LinkedList<Value>.Index) -> Bool {
+            guard lhs != rhs else {
+                return false
+            }
+            let nodes = sequence(first: lhs.node) { node in
+                return node?.next
+            }
+            return nodes.contains(where: { $0 === rhs.node })
+        }
+    }
+
+    public var startIndex: Index {
+        return Index(node: head)
+    }
+    
+    public var endIndex: Index {
+        return Index(node: tail)
+    }
+
+    public func index(after i: Index) -> Index {
+        return Index(node: i.node?.next)
+    }
+    public subscript(position: Index) -> Value {
+        return position.node!.value
     }
 }
