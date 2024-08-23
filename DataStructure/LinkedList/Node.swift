@@ -28,3 +28,12 @@ extension Node: CustomStringConvertible {
         return "\(value) -> " + String(describing: next) + " "
     }
 }
+
+extension Node {
+    public var deep: Int {
+        guard let next = next else {
+            return 1
+        }
+        return 1 + next.deep
+    }
+}

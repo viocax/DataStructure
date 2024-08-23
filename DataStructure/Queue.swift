@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class Queue<Element> {
+public struct Queue<Element> {
     private var linkedList: LinkedList<Element>
     init() {
         self.linkedList = .init()
@@ -21,18 +21,18 @@ extension Queue {
     }
 
     public var count: Int {
-        return .zero
+        return linkedList.count
     }
 
-    public func enqueue(_ element: Element) {
+    public mutating func enqueue(_ element: Element) {
         self.linkedList.append(element)
     }
 
-    public func dequeue() -> Element? {
+    public mutating func dequeue() -> Element? {
         return self.linkedList.pop()?.value
     }
 
-    public func peek() -> Element? {
+    public mutating func peek() -> Element? {
         return self.linkedList.first?.value
     }
 }

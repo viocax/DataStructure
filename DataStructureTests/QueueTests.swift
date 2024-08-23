@@ -11,7 +11,7 @@ import Testing
 struct QueueTests {
 
     @Test func check_IsEmpty() async throws {
-        let queue = Queue<Int>()
+        var queue = Queue<Int>()
         
         #expect(queue.isEmpty)
 
@@ -24,7 +24,7 @@ struct QueueTests {
         #expect(queue.peek() == 2)
     }
     @Test func checkQueueIterator() {
-        let queue = Queue<Int>()
+        var queue = Queue<Int>()
 
         queue.enqueue(0)
         queue.enqueue(1)
@@ -37,5 +37,24 @@ struct QueueTests {
         queue.enumerated().forEach { offset, value in
             #expect(offset == value)
         }
+    }
+    @Test func copyOnWrite() {
+        var queue = Queue<Int>()
+        queue.enqueue(1)
+        queue.enqueue(2)
+        queue.enqueue(3)
+
+        var queue2 = queue
+        
+        #expect(queue.count == 3)
+        #expect(queue2.count == 3)
+        
+        #expect(queue2.dequeue() == 1)
+        #expect(queue2.dequeue() == 2)
+        #expect(queue.peek() == 1)
+        
+
+        #expect(queue.count == 3)
+        #expect(queue2.count == 1)
     }
 }

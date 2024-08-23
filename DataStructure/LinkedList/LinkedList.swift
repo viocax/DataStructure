@@ -36,13 +36,7 @@ extension LinkedList {
     }
 
     public var count: Int {
-        var current = head
-        var index = 0
-        while let unwrapCurrent = current {
-            current = unwrapCurrent.next
-            index += 1
-        }
-        return index
+        return head?.deep ?? 0
     }
 
     public var last: Node<Value>? {
