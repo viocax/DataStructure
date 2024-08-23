@@ -28,6 +28,7 @@ extension Queue {
         self.linkedList.append(element)
     }
 
+    @discardableResult
     public mutating func dequeue() -> Element? {
         return self.linkedList.pop()?.value
     }
