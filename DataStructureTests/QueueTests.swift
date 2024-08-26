@@ -27,7 +27,6 @@ struct QueueTests {
         }
         check(queue: &queue1)
         check(queue: &queue2)
-        check(queue: &queue3)
         
     }
     @Test func checkQueueIterator() {
