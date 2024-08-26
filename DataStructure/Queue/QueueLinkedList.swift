@@ -7,14 +7,14 @@
 
 import Foundation
 
-public struct Queue<Element> {
+public struct QueueLinkedList<Element> {
     private var linkedList: LinkedList<Element>
     init() {
         self.linkedList = .init()
     }
 }
 
-extension Queue {
+extension QueueLinkedList: Queue {
 
     public var isEmpty: Bool {
         return linkedList.isEmpty
@@ -24,8 +24,10 @@ extension Queue {
         return linkedList.count
     }
 
-    public mutating func enqueue(_ element: Element) {
+    @discardableResult
+    public mutating func enqueue(_ element: Element) -> Bool {
         self.linkedList.append(element)
+        return true
     }
 
     @discardableResult
@@ -33,20 +35,21 @@ extension Queue {
         return self.linkedList.pop()?.value
     }
 
-    public mutating func peek() -> Element? {
+    public var peek: Element? {
         return self.linkedList.first?.value
     }
 }
 
 // MARK: - CustomStringConvertible
-extension Queue: CustomStringConvertible {
+extension QueueLinkedList: CustomStringConvertible {
 
     public var description: String {
         return linkedList.description
     }
 }
 
-extension Queue: Collection {
+// MARK: - Collection
+extension QueueLinkedList {
 
     public typealias Element = Element
 
