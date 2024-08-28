@@ -48,7 +48,7 @@ extension QueueLinkedList: CustomStringConvertible {
     }
 }
 
-// MARK: - Collection
+// MARK: - Sequence
 extension QueueLinkedList {
 
     public func makeIterator() -> AnyIterator<Element> {
@@ -61,24 +61,4 @@ extension QueueLinkedList {
             return node.value
         }
     }
-
-//    public typealias Element = Element
-//
-//    public typealias Index = LinkedList<Element>.Index
-//
-//    public var startIndex: Index {
-//        return linkedList.startIndex
-//    }
-//    
-//    public var endIndex: Index {
-//        return linkedList.endIndex
-//    }
-//    
-//    public func index(after i: Index) -> Index {
-//        return linkedList.index(after: i)
-//    }
-//
-//    public subscript(position: Index) -> Element {
-//        return linkedList[position]
-//    }
 }

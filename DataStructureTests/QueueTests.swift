@@ -14,6 +14,7 @@ struct QueueTests {
         var queue1 = QueueLinkedList<Int>()
         var queue2 = QueueArray<Int>()
         var queue3 = QueueBufferRing<Int>(size: 5)
+        var queue4 = QueueStack<Int>()
         
         func check<Q: Queue>(queue: inout Q) where Q.Element == Int {
             #expect(queue.isEmpty)
@@ -29,12 +30,14 @@ struct QueueTests {
         check(queue: &queue1)
         check(queue: &queue2)
         check(queue: &queue3)
+        check(queue: &queue4)
         
     }
     @Test func checkQueueIterator() {
         let queue = QueueLinkedList<Int>()
         let queue2 = QueueArray<Int>()
         let queue3 = QueueBufferRing<Int>(size: 5)
+        let queue4 = QueueStack<Int>()
         
         func check<Q: Queue>(queue: Q) where Q.Element == Int {
             var queue = queue
@@ -50,11 +53,13 @@ struct QueueTests {
         check(queue: queue)
         check(queue: queue2)
         check(queue: queue3)
+        check(queue: queue4)
     }
     @Test func copyOnWrite() {
         let queue = QueueLinkedList<Int>()
         let queue2 = QueueArray<Int>()
         let queue3 = QueueBufferRing<Int>(size: 5)
+        let queue4 = QueueStack<Int>()
         
         func check<Q: Queue>(queue: Q) where Q.Element == Int {
             var queue = queue
@@ -78,6 +83,7 @@ struct QueueTests {
         check(queue: queue)
         check(queue: queue2)
         check(queue: queue3)
+        check(queue: queue4)
     }
     
     @Test func bufferRing() {
