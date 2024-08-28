@@ -103,4 +103,25 @@ struct QueueTests {
         #expect(queue.peek == nil)
         #expect(queue.isEmpty)
     }
+
+    @Test func reversed() {
+        let queue = QueueLinkedList<Int>()
+        let queue2 = QueueArray<Int>()
+        let queue3 = QueueBufferRing<Int>(size: 10)
+        let queue4 = QueueStack<Int>()
+        
+        func check<Q: Queue>(queue: Q) where Q.Element == Int {
+            var queue = queue
+            let mockArray = [1, 2, 3, 4, 5, 6, 7]
+            mockArray.forEach { interger in
+                queue.enqueue(interger)
+            }
+            let result = queue.reversed()
+            #expect(result == mockArray.reversed())
+        }
+        check(queue: queue)
+        check(queue: queue2)
+        check(queue: queue3)
+        check(queue: queue4)
+    }
 }
