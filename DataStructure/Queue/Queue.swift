@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol Queue: Collection {
+public protocol Queue: Sequence {
 
     associatedtype Element
 

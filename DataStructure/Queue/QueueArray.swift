@@ -51,31 +51,19 @@ extension QueueArray: Queue {
         }
         return array.removeFirst()
     }
-}
 
-// MARK: - Collection
-extension QueueArray {
-    public typealias Element = Element
+    // MARK: - Sequence
+    public typealias Iterator = AnyIterator<Element>
 
-    public typealias Index = Int
-
-    public var startIndex: Int {
-        return array.startIndex
-    }
-    
-    public var endIndex: Int {
-        return array.endIndex
-    }
-    
-    public func index(after i: Int) -> Int {
-        return array.index(after: i)
-    }
-
-    public subscript(position: Int) -> Element {
-        if position == endIndex {
-            let index = Swift.max(position - 1, 0)
+    public func makeIterator() -> AnyIterator<Element> {
+        var index: Int = .zero
+        let count = self.count
+        return AnyIterator<Element> {
+            guard self.isEmpty == false, index < count else {
+                return nil
+            }
+            defer { index += 1 }
             return array[index]
         }
-        return array[position]
     }
 }

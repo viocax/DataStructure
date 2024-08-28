@@ -16,6 +16,7 @@ public struct QueueBufferRing<Element> {
 
 
 extension QueueBufferRing: Queue {
+    
     private var isFull: Bool {
         return ring.isFull
     }
@@ -26,7 +27,7 @@ extension QueueBufferRing: Queue {
         return ring.count
     }
     public var peek: Element? {
-        return ring.first
+        return ring.array.first(where: { $0 != nil }) ?? nil
     }
     @discardableResult
     public mutating func enqueue(_ element: Element) -> Bool {
@@ -35,22 +36,16 @@ extension QueueBufferRing: Queue {
     public mutating func dequeue() -> Element? {
         return ring.read()
     }
-}
 
-
-extension QueueBufferRing {
-    public var startIndex: Int {
-        return ring.startIndex
+    // MARK: - Sequence
+    public func makeIterator() -> AnyIterator<Element> {
+        var values = ring.array.compactMap { $0 }
+        return AnyIterator<Element> {
+            guard !values.isEmpty else { return nil }
+            return values.removeFirst()
+        }
     }
-    public var endIndex: Int {
-        return ring.endIndex
-    }
-    public func index(after i: Int) -> Int {
-        return ring.index(after: i)
-    }
-    public subscript(position: Int) -> Element {
-        return ring[position]
-    }
+    
 }
 
 extension QueueBufferRing: CustomStringConvertible {
@@ -107,29 +102,6 @@ extension QueueBufferRing.BufferRing {
     }
     private var canWriteSpacing: Int {
         return buffer - canReadSpacing
-    }
-}
-
-extension QueueBufferRing.BufferRing: Collection {
-
-    public typealias Element = E
-    public typealias Index = Int
-    
-    public var startIndex: Int {
-        return array.startIndex
-    }
-    public var endIndex: Int {
-        return count
-    }
-    public var first: E? {
-        return array.first(where: { $0 != nil }) ?? nil
-    }
-    public func index(after i: Int) -> Int {
-        return (readIndex + 1) % buffer
-    }
-    public subscript(position: Int) -> E {
-        // TODO: Not support yet,
-        return array[position % buffer]!
     }
 }
 

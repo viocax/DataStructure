@@ -51,23 +51,34 @@ extension QueueLinkedList: CustomStringConvertible {
 // MARK: - Collection
 extension QueueLinkedList {
 
-    public typealias Element = Element
-
-    public typealias Index = LinkedList<Element>.Index
-
-    public var startIndex: Index {
-        return linkedList.startIndex
-    }
-    
-    public var endIndex: Index {
-        return linkedList.endIndex
-    }
-    
-    public func index(after i: Index) -> Index {
-        return linkedList.index(after: i)
+    public func makeIterator() -> AnyIterator<Element> {
+        var currentNode = linkedList.first
+        return AnyIterator<Element> {
+            guard let node = currentNode else { return nil }
+            defer {
+                currentNode = currentNode?.next
+            }
+            return node.value
+        }
     }
 
-    public subscript(position: Index) -> Element {
-        return linkedList[position]
-    }
+//    public typealias Element = Element
+//
+//    public typealias Index = LinkedList<Element>.Index
+//
+//    public var startIndex: Index {
+//        return linkedList.startIndex
+//    }
+//    
+//    public var endIndex: Index {
+//        return linkedList.endIndex
+//    }
+//    
+//    public func index(after i: Index) -> Index {
+//        return linkedList.index(after: i)
+//    }
+//
+//    public subscript(position: Index) -> Element {
+//        return linkedList[position]
+//    }
 }

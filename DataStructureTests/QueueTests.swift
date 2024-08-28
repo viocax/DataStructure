@@ -34,6 +34,7 @@ struct QueueTests {
     @Test func checkQueueIterator() {
         let queue = QueueLinkedList<Int>()
         let queue2 = QueueArray<Int>()
+        let queue3 = QueueBufferRing<Int>(size: 5)
         
         func check<Q: Queue>(queue: Q) where Q.Element == Int {
             var queue = queue
@@ -42,15 +43,13 @@ struct QueueTests {
             #expect(queue.enqueue(2) == true)
             #expect(queue.enqueue(3) == true)
             
-            #expect(queue[queue.startIndex] == 0)
-            #expect(queue[queue.endIndex] == 3)
-            
             queue.enumerated().forEach { offset, value in
                 #expect(offset == value)
             }
         }
         check(queue: queue)
         check(queue: queue2)
+        check(queue: queue3)
     }
     @Test func copyOnWrite() {
         let queue = QueueLinkedList<Int>()
