@@ -169,4 +169,34 @@ struct LinkedListTests {
         #expect(list2.count == 4)
         #expect(list2.last?.value == 4)
     }
+
+    @Test func LRUcache_get() {
+        let mockArray = (0...5).map { inter in
+            return (inter, "\(inter)")
+        }
+        
+        let cache = LRUCache<Int, String>(size: 6)
+
+        #expect(cache.isEmpty)
+        #expect(cache.get(1) == nil)
+
+        mockArray.forEach { key, value in
+            cache.put(key: key, value: value)
+        }
+
+        #expect(cache.outputOrderList == ["5", "4", "3", "2", "1", "0"])
+        #expect(cache.isEmpty == false)
+
+        #expect(cache.get(0) == "0")
+        #expect(cache.outputOrderList == ["0", "5", "4", "3", "2", "1"])
+        #expect(cache.get(3) == "3")
+        #expect(cache.outputOrderList == ["3", "0", "5", "4", "2", "1"])
+
+        cache.put(key: 3, value: "33")
+        #expect(cache.outputOrderList == ["33", "0", "5", "4", "2", "1"])
+
+        cache.put(key: 9, value: "9")
+        #expect(cache.get(9) == "9")
+        #expect(cache.outputOrderList == ["9", "33", "0", "5", "4", "2"])
+    }
 }

@@ -103,10 +103,11 @@ extension LinkedList {
             return nil
         }
         head = first.next
+        first.next = nil
         if head == nil {
             tail = nil
         }
-        return .init(value: first.value)
+        return first
     }
     @discardableResult
     public mutating func remove(at index: Int) -> Node<Value>? {
