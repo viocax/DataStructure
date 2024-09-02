@@ -52,17 +52,19 @@ extension LRUCache {
         } else {
             let newNode = Node(key: key, value: value)
             hashMap[key] = newNode
-            head?.pre = newNode
-            newNode.next = head
-            head = newNode
-            if tail == nil {
+            if head == nil {
+                head = newNode
                 tail = head
+            } else {
+                head?.pre = newNode
+                newNode.next = head
+                head = newNode
             }
         }
         if hashMap.count > size {
+            hashMap.removeValue(forKey: tail!.key)
             tail = tail?.pre
             tail?.next = nil
-            hashMap.removeValue(forKey: tail!.key)
         }
     }
 
